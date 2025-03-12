@@ -1,20 +1,19 @@
-## 📘 Cursor Installer for Ubuntu
+# Cursor Installer for Ubuntu
 
-### 📂 Description
+## 📂 Description
 This script automates the installation of the Cursor AI Code Editor (based on VS Code) on Ubuntu systems.
 
 It will:
 - Download the latest or specified version of Cursor AppImage;
-- Setup `chrome-sandbox` (from system or via downloading Google Chrome `.deb`);
 - Place everything in `~/apps/cursor`;
 - Create a CLI wrapper command `cursor` in `~/bin/`;
-- Add menu launcher (desktop shortcut) with a high-quality icon.
+- Add a menu launcher (desktop shortcut) with a high-quality icon.
 
 > ✅ Tested on Ubuntu 24.04
 
 ---
 
-### 🚀 Installation
+## 🚀 Installation
 
 ```bash
 chmod +x install-cursor.sh
@@ -29,16 +28,27 @@ You can also pass a custom Cursor AppImage URL:
 
 ---
 
-### ✅ After Installation
-- All files: `~/apps/cursor`
+## ✅ After Installation
+- All files are stored in: `~/apps/cursor`
 - CLI command: `cursor`
 - Menu entry: **Cursor Editor**
 
 ---
 
-### 🔧 Requirements
-- Ubuntu (20.04, 22.04, 24.04+)
-- `wget`, `dpkg`, `update-desktop-database`
-- System-installed Google Chrome (optional, for sandbox)
+## ⚠ About sandbox mode
+Cursor is based on Electron and uses Chromium's sandboxing mechanism. However, in many AppImage builds (including Cursor), full sandboxing may fail even on a regular Ubuntu system due to how the application is packaged.
 
-If Chrome is not installed, the script will automatically download and extract `chrome-sandbox`.
+This installer intentionally runs Cursor with the `--no-sandbox` flag to ensure consistent and stable execution. This is a common practice for Electron-based AppImages and does not affect normal usage for local development.
+
+If the Cursor team improves sandbox compatibility in future builds, you may remove `--no-sandbox` from the launcher script.
+
+---
+
+## 🔧 Requirements
+- Ubuntu (20.04 / 22.04 / 24.04+)
+- `wget`, `update-desktop-database`
+
+---
+
+## 📄 License
+This script is distributed under the MIT License.
